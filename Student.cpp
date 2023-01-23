@@ -9,8 +9,9 @@ Student::Student(){
   id = 0;
 }
 
-char* Student::getName()
+char* Student::getName(){
   return name;
+}
 
 int Student::getId(){
   return id;
