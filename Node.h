@@ -40,7 +40,7 @@ public:
     // Get student information for this node.
     
     Student* getStudent();
-private:
+  //private:
     Student* mpStudent;  // Student info for this node.
     Node* mpNext;        // link to next Node
 };
