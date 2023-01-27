@@ -15,6 +15,10 @@ char* Student::getName(){
   return name;
 }
 
+char* Student::getLast(){
+  return last;
+}
+
 int Student::getId(){
   return id;
 
@@ -23,6 +27,11 @@ int Student::getId(){
 void Student::setName(char* title){
   name = new char[30];
   strcpy(name, title);
+}
+
+void Student::setLast(char* title){
+  last = new char[30];
+  strcpy(last, title);
 }
 
 void Student::setId(int number){

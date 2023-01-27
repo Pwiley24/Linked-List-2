@@ -31,10 +31,16 @@ int main(){
     
       //get name
       char name[20];
-      cout << "What is the student's name?" << endl;
+      cout << "What is the student's first name?" << endl;
       cin.get(name, 20);
       cin.ignore(20, '\n');
       newStudent->setName(name);
+
+      char last[20];
+      cout << "What is the student's last name?" << endl;
+      cin.get(last, 20);
+      cin.ignore(20, '\n');
+      newStudent->setLast(last);
     
       //get ID:
       int id = 0;
@@ -88,7 +94,7 @@ void add(Node* newNode, Node* current, Node* previous, Node* & head){
     previous->setNext(newNode);
 
   }else{//sort by id
-    if(newNode->getStudent()->getId() > current->getStudent()->getId()){//if new node goes before a node
+    if(newNode->getStudent()->getId() < current->getStudent()->getId()){//if new node goes before a node
       if(previous != NULL &&
 	 previous != head){//not the head
 	previous->setNext(newNode);
@@ -107,7 +113,7 @@ void print(Node* current){
   if(current == NULL){
     cout << "Nothing to print" << endl;
   }else{
-    cout << current->getStudent()->getName() << ", " << current->getStudent()->getId() << ", " << current->getStudent()->getGpa()<< endl;
+    cout << current->getStudent()->getName() << " " << current->getStudent()->getLast() << ", " << current->getStudent()->getId() << ", " << current->getStudent()->getGpa()<< endl;
   
     if(current->getNext() != NULL){
       print(current->getNext());

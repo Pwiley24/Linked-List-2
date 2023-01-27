@@ -14,11 +14,14 @@ class Student{
   void setId(int number);
   void setGpa(float number);
   float getGpa();
+  void setLast(char*);
+  char* getLast();
 
  private:
   char* name;
   int id;
   float gpa;
+  char* last;
 };
 
 #endif
