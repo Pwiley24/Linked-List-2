@@ -62,11 +62,15 @@ int main(){
     }else if(strcmp(input, "PRINT") == 0){//print the list
       print(head);
     }else if(strcmp(input, "DELETE") == 0){//delete a node/student
-      cout << "What is the student's ID?" << endl;
-      int id = 0;
-      cin >> id;
-      cin.ignore(20, '\n');
-      deleteNode(head, id, NULL, head); 
+      if(head != NULL){
+	cout << "What is the student's ID?" << endl;
+	int id = 0;
+	cin >> id;
+	cin.ignore(20, '\n');
+	deleteNode(head, id, NULL, head);
+      }else {
+	cout << "Nothing to delete." << endl;
+      }
 
       
     }else if(strcmp(input, "QUIT") == 0){//quit the program
@@ -133,11 +137,10 @@ void deleteNode(Node* current, int number, Node* previous, Node* & head){
   }else{
     if(current->getNext() != NULL){
       deleteNode(current->getNext(), number, current, head);
-    }else {
+    }else{
       cout << "No ID matches" << endl;
     }
   }
-  
 }
 
 
