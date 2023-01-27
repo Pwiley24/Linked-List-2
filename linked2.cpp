@@ -1,3 +1,8 @@
+/*
+ * This program creates a node list of students that stores their name, id, and gpa.
+ * Author: Paige Wiley
+ * Date: 1-27-2023
+ */
 #include <iostream>
 #include <cstring>
 #include "Node.h"
@@ -7,6 +12,7 @@ using namespace std;
 void add(Node* newNode, Node* current, Node* previous, Node* & head);
 void print(Node* current);
 void deleteNode(Node* current, int number, Node* previous, Node* & head);
+void findAverage(Node* current, float average, int nodeNum);
 
 int main(){
   bool running = true;
@@ -16,7 +22,7 @@ int main(){
   while(running){
     //read in user input
     char input[10];
-    cout << "Enter a command:" << endl;
+    cout << "Enter a command: (ADD, PRINT, DELETE, AVERAGE, QUIT)" << endl;
     cin.get(input, 10);
     cin.ignore(10, '\n');
 
@@ -36,6 +42,13 @@ int main(){
       cin >> id;
       cin.ignore(20, '\n');
       newStudent->setId(id);
+
+      //get GPA:
+      float gpa = 0;
+      cout << "What is the student's GPA?" << endl;
+      cin >> gpa;
+      cin.ignore(10, '\n');
+      newStudent->setGpa(gpa);
   
       Node* newNode = new Node(newStudent);
       add(newNode, head, NULL, head);
@@ -48,6 +61,16 @@ int main(){
       cin >> id;
       cin.ignore(20, '\n');
       deleteNode(head, id, NULL, head); 
+
+      
+    }else if(strcmp(input, "QUIT") == 0){//quit the program
+      running = false;
+
+
+    }else if(strcmp(input, "AVERAGE") == 0){//find average gpa of all students
+      float average = 0;
+      int nodeNum = 0;
+      findAverage(head, average, nodeNum);
     }
   }
 
@@ -84,7 +107,7 @@ void print(Node* current){
   if(current == NULL){
     cout << "Nothing to print" << endl;
   }else{
-    cout << current->getStudent()->getId() << ", " << current->getStudent()->getName() << endl;
+    cout << current->getStudent()->getName() << ", " << current->getStudent()->getId() << ", " << current->getStudent()->getGpa()<< endl;
   
     if(current->getNext() != NULL){
       print(current->getNext());
@@ -109,4 +132,20 @@ void deleteNode(Node* current, int number, Node* previous, Node* & head){
     }
   }
   
+}
+
+
+void findAverage(Node* current, float average, int nodeNum){
+  if(current != NULL){//if there is data to average
+    nodeNum++;
+    average += current->getStudent()->getGpa();
+    if(current->getNext() != NULL){//still more nodes
+      findAverage(current->getNext(), average, nodeNum);
+    }else{
+      average /= nodeNum;
+      cout << "Average GPA: " << average << endl;
+    }
+  }else{
+    cout << "No data to calculate." << endl;
+  }
 }
