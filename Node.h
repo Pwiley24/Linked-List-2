@@ -12,9 +12,9 @@
  * Node class that contains student information. Node is used as part of a LinkedList.
  */
 
-#ifndef NODE_H
-#define NODE_H
-#include "Student.h"
+#ifndef NODE_H //added
+#define NODE_H //added
+#include "Student.h" //added
 
 using namespace std;
 
@@ -44,4 +44,4 @@ public:
     Node* mpNext;        // link to next Node
 };
 
-#endif
+#endif //add
